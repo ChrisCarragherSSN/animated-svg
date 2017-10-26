@@ -1,0 +1,156 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* VARIABLES */
+$baseAnimationDuration: 18s;
+$size: 100px;
+$svgSize: 70px;
+
+//vars specific for curves
+$animationStep: 2;
+$increase: pi() / 100;
+
+$backgroundColor: skyblue;
+$fontColor: white;
+$strokeColor: white;
+$fillColor: #aedef4;
+
+/* Applies a stroke to the icons. Can use percentage for responsive */
+$strokeStrokeWidth: 0%;
+$strokeStrokeColor: black;
+$fillStrokeWidth: 0%;
+$fillStrokeColor: black;
+
+.climacon_component-stroke {
+  fill: $strokeColor;
+  stroke-width: $strokeStrokeWidth;
+  stroke: $strokeStrokeColor;
+}
+
+.climacon_component-fill {
+  fill: $fillColor;
+  stroke-width: $fillStrokeWidth;
+  stroke: $fillStrokeColor;
+}
+
+/* GLOBAL */
+
+*, *:after, *:before {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background: $backgroundColor;
+  font-family: Lato, sans-serif;
+  color: $fontColor;
+}
+
+.wrapper {
+  width: 75%;
+  margin: 5% auto;
+  text-align: center;
+}
+
+/* SVG GLOBAL */
+
+svg {
+  display: inline-block;
+  width: $size;
+  height: $size;
+  shape-rendering: geometricPrecision;
+}
+
+g, path, circle, rect {
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  transform-origin: 50% 50%;
+  animation-duration: $baseAnimationDuration;
+  animation-direction: normal;
+}
+
+/* SUN */
+
+.climacon_componentWrap-sun {
+  animation-name: rotate;
+}
+
+.climacon_componentWrap_sunSpoke .climacon_component-stroke_sunSpoke {
+  animation-name: scale;
+  animation-direction: alternate;
+  animation-duration: $baseAnimationDuration / 4;
+}
+
+.climacon_componentWrap_sunSpoke .climacon_component-stroke_sunSpoke:nth-child(even) {
+  animation-delay: $baseAnimationDuration / 4;
+}
+
+/* ANIMATIONS */
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes partialRotate {
+  0% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-15deg);
+  }
+  50% {
+    transform: rotate(0);
+  }
+  75% {
+    transform: rotate(15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+
+@keyframes scale {
+  0% {
+    transform: scale(1, 1);
+  }
+  100% {
+    transform: scale(0.5, 0.5);
+  }
+}
